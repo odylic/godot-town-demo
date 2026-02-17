@@ -103,7 +103,7 @@ limit_bottom = 1800
 position = Vector2(600, 500)
 
 [node name="Villager2" parent="." instance=ExtResource("2_npc")]
-position = Vector2(1800, 1400)
+position = Vector2(1200, 1600)
 
 [node name="DialogueBox" parent="." instance=ExtResource("3_dlgbox")]
 

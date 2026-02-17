@@ -6,10 +6,18 @@ const WORLD_H := 1800.0
 # Dirt path running through the overworld (full height)
 const OVERWORLD_PATH := [1100.0, 0.0, 1300.0, 1800.0]
 
-# Gray wall strips flanking the exit doorway [x1, y1, x2, y2]
+# Gray wall strips flanking each exit [x1, y1, x2, y2]
 const TOWN_EXIT_WALLS := [
 	[0.0, 0.0, 1100.0, 120.0],
 	[1300.0, 0.0, 2400.0, 120.0],
+]
+const TOWN_LEFT_EXIT_WALLS := [
+	[0.0, 0.0, 120.0, 800.0],
+	[0.0, 1000.0, 120.0, 1800.0],
+]
+const TOWN2_RIGHT_EXIT_WALLS := [
+	[2280.0, 0.0, 2400.0, 800.0],
+	[2280.0, 1000.0, 2400.0, 1800.0],
 ]
 const OVERWORLD_EXIT_WALLS := [
 	[0.0, 1680.0, 1100.0, 1800.0],
@@ -41,8 +49,16 @@ func _draw() -> void:
 				var gp := rect.global_position
 				draw_rect(_world_rect(gp.x, gp.y, gp.x + rect.size.x, gp.y + rect.size.y, w, h), rect.color)
 
-	# Exit walls — gray strips flanking the doorway opening
-	var exit_walls := TOWN_EXIT_WALLS if is_town else OVERWORLD_EXIT_WALLS
+	# Exit walls — gray strips flanking each scene's exit(s)
+	var is_main := scene_path.ends_with("main.tscn")
+	var is_town2 := scene_path.ends_with("town2.tscn")
+	var exit_walls: Array
+	if is_main:
+		exit_walls = TOWN_EXIT_WALLS + TOWN_LEFT_EXIT_WALLS
+	elif is_town2:
+		exit_walls = TOWN2_RIGHT_EXIT_WALLS
+	else:
+		exit_walls = OVERWORLD_EXIT_WALLS
 	for wall in exit_walls:
 		draw_rect(_world_rect(wall[0], wall[1], wall[2], wall[3], w, h), Color(0.45, 0.45, 0.45))
 

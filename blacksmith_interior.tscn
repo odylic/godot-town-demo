@@ -109,13 +109,6 @@ offset_right = 1200.0
 offset_bottom = 240.0
 color = Color(0.22, 0.20, 0.18, 1)
 
-[node name="Anvil" type="ColorRect" parent="Decorations"]
-offset_left = 580.0
-offset_top = 370.0
-offset_right = 700.0
-offset_bottom = 430.0
-color = Color(0.18, 0.18, 0.18, 1)
-
 [node name="Shelf1" type="ColorRect" parent="Decorations"]
 offset_left = 30.0
 offset_top = 50.0
@@ -135,10 +128,6 @@ color = Color(0.28, 0.20, 0.12, 1)
 [node name="CounterShape" type="CollisionShape2D" parent="Decorations/FurnitureCollision"]
 position = Vector2(640, 200)
 shape = SubResource("RectangleShape2D_counter")
-
-[node name="AnvilShape" type="CollisionShape2D" parent="Decorations/FurnitureCollision"]
-position = Vector2(640, 400)
-shape = SubResource("RectangleShape2D_shelf")
 
 [node name="Shelf1Shape" type="CollisionShape2D" parent="Decorations/FurnitureCollision"]
 position = Vector2(155, 85)
