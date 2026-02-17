@@ -133,6 +133,67 @@ No hardcoded building arrays. Buildings register their Floor `ColorRect` into th
 
 ---
 
+## Adding a New Town
+
+Follow these steps every time you add a new outdoor town scene:
+
+### 1. Create `townN.tscn`
+- Copy the structure of `town2.tscn` as a starting point
+- Set a unique `uid` string at the top (e.g. `uid://town3_001`)
+- Place 6 `house.tscn` instances in the standard 2-column × 3-row grid (Col A x≈300, Col B x≈1750; rows at y≈200 / 700 / 1300)
+- Wire up your exit: split whichever border wall needs a gap into two `CollisionShape2D` segments with a 200px opening centered at y=900 (for left/right exits) or x=1200 (for top/bottom)
+- Add the corresponding `Area2D` exit trigger at the gap
+- Add gray `ColorRect` visual strips flanking the gap (width/height 120px, matching the gap edges), same as `LeftSideTopWall` / `LeftSideBottomWall` in `main.tscn`
+- Include `Player`, `Camera2D`, `DialogueBox`, `Minimap`, and `FullMap` instances — copy directly from an existing town scene
+
+### 2. Create `townN.gd`
+```gdscript
+extends Node2D
+
+func _ready() -> void:
+    $YourExit.body_entered.connect(_on_exit)
+
+func _on_exit(body: Node2D) -> void:
+    if body.is_in_group("player"):
+        GlobalState.spawn_position = Vector2(...)  # spawn near the matching gap in the destination scene
+        get_tree().change_scene_to_file("res://destination.tscn")
+```
+
+### 3. Update the connecting scene's `.gd` script
+Add a new `body_entered` connection for the exit that leads into your new town, and set `GlobalState.spawn_position` to land the player near the gap on the new town's matching edge.
+
+### 4. Update `minimap.gd`
+- Add a new constant for your town's exit wall strips, e.g.:
+```gdscript
+const TOWN3_LEFT_EXIT_WALLS := [
+    [0.0, 0.0, 120.0, 800.0],
+    [0.0, 1000.0, 120.0, 1800.0],
+]
+```
+- Update the `is_town` check to include the new scene filename:
+```gdscript
+var is_town := scene_path.ends_with("main.tscn") or scene_path.ends_with("town2.tscn") or scene_path.ends_with("town3.tscn")
+```
+- Add a branch in the exit walls selection block:
+```gdscript
+elif scene_path.ends_with("town3.tscn"):
+    exit_walls = TOWN3_LEFT_EXIT_WALLS
+```
+
+### 5. NPC placement rules
+- **Never** place outdoor NPCs at a position that overlaps a building footprint
+- Building footprints: `position.x` → `position.x + house_width`, `position.y` → `position.y + house_height`
+- Safe zones: center of the map (x≈900–1400), between building rows, or any position clearly in the open ground
+- Desk NPCs (behind counters) must have `interaction_offset` and `interaction_size` set so the trigger zone appears **in front of** the counter, not behind it
+
+### 6. Interior scenes
+- All interior scenes must be **1280 × 720** to match the viewport — smaller rooms cause the camera to render incorrectly
+- Attach `house_interior.gd` to the root node — it handles the `ExitDoor` trigger automatically
+- Set `Camera2D` limits to `limit_left=0`, `limit_top=0`, `limit_right=1280`, `limit_bottom=720`
+- Keep furniture away from the center walkway; only add `StaticBody2D` collision to furniture the player should not pass through
+
+---
+
 ## Color Guide
 
 | Color | Represents |
