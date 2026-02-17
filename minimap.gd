@@ -23,7 +23,7 @@ func _draw() -> void:
 	var w := size.x
 	var h := size.y
 	var scene_path: String = get_tree().current_scene.scene_file_path
-	var is_town := scene_path.ends_with("main.tscn")
+	var is_town := scene_path.ends_with("main.tscn") or scene_path.ends_with("town2.tscn")
 
 	# Ground — match each scene's actual color
 	if is_town:

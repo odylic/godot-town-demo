@@ -6,9 +6,9 @@ A top-down 2D RPG prototype built in **Godot 4.3**. This serves as a template fo
 
 ## Features
 
-- **Two explorable outdoor maps** — a town (`main.tscn`) and a forest overworld (`overworld.tscn`)
+- **Three explorable outdoor maps** — main town (`main.tscn`), a second town to the west (`town2.tscn`), and a forest overworld (`overworld.tscn`)
 - **Enterable buildings** — walk through any building door to enter a full interior scene; walk back to the bottom exit to return outside
-- **Three unique interiors** — Tavern (bar, tables), Weapons Store (counter, shelves), and generic houses (table, chairs)
+- **Five unique interiors** — Tavern, Inn, Weapons Store, Blacksmith, and generic houses
 - **Impassable furniture** — bar counters, tables, and shelves all have physics collision
 - **NPC dialogue** — approach named characters (Merchant, Tavernkeeper, Villagers) and press interact; desk NPCs require you to stand right in front of the counter
 - **Minimap** — always-visible corner map auto-detecting buildings, NPCs, and player via scene groups
@@ -34,10 +34,12 @@ A top-down 2D RPG prototype built in **Godot 4.3**. This serves as a template fo
 
 ```
 godot-town-demo/
-├── main.tscn               # Town scene — 6 buildings in 2×3 grid, 2 outdoor NPCs
-├── main.gd                 # Handles TopExit → overworld transition
+├── main.tscn               # Main town — 6 buildings, top exit → overworld, left exit → town2
+├── main.gd                 # Handles TopExit → overworld, LeftExit → town2
+├── town2.tscn              # Second town — 6 buildings, right exit → main town
+├── town2.gd                # Handles RightExit → main town
 ├── overworld.tscn          # Forest overworld scene
-├── overworld.gd            # Handles BottomExit → town transition
+├── overworld.gd            # Handles BottomExit → main town
 │
 ├── house.tscn              # Reusable building prefab (bare Node2D + house.gd)
 ├── house.gd                # Builds collision, door trigger, roof, sign in _ready()
@@ -47,6 +49,8 @@ godot-town-demo/
 ├── house_interior.tscn     # Generic house interior (1280×720, table + chairs)
 ├── shop_interior.tscn      # Weapons Store interior (counter, shelves, Merchant NPC)
 ├── tavern_interior.tscn    # Tavern interior (bar, two table groups, Tavernkeeper NPC)
+├── inn_interior.tscn       # Inn interior (counter, tables, Innkeeper NPC)
+├── blacksmith_interior.tscn # Blacksmith interior (dark stone, anvil, Blacksmith NPC)
 ├── house_interior.gd       # Shared script for all interiors — ExitDoor → return to town
 │
 ├── player.tscn             # Player (CharacterBody2D, 32×32, "player" group)
@@ -81,18 +85,29 @@ Both outdoor maps are **2400 × 1800** px. The viewport is **1280 × 720**, givi
 ```
 [ Overworld — forest ]
         ↕  (north exit / south exit, x 1100–1300)
-[  Town — main.tscn  ]
+[ Town 2 — town2.tscn ] ←→ [  Main Town — main.tscn  ]
+                (left/right exit, y 800–1000)
         ↕  (walk through any building door)
-[ Interior — tavern / shop / house ]
+[ Interior — tavern / inn / shop / blacksmith / house ]
 ```
 
-### Town building grid
+### Main town building grid
 
 ```
 Col A (x≈300)          Col B (x≈1750)
 ─────────────────────────────────────
 House 1                Tavern         ← row 1 (y≈200)
 Weapons Store          House 2        ← row 2 (y≈700)
+House 3                House 4        ← row 3 (y≈1300)
+```
+
+### Town 2 building grid
+
+```
+Col A (x≈300)          Col B (x≈1750)
+─────────────────────────────────────
+House 1                Inn            ← row 1 (y≈200)
+House 2                Blacksmith     ← row 2 (y≈700)
 House 3                House 4        ← row 3 (y≈1300)
 ```
 

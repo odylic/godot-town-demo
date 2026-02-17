@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://clp20p1awv1h8"]
+[gd_scene load_steps=14 format=3 uid="uid://clp20p1awv1h8"]
 
 [ext_resource type="PackedScene" uid="uid://bvt8qnxwqy3ey" path="res://player.tscn" id="1_jsbj5"]
 [ext_resource type="PackedScene" uid="uid://duah71j3glpcq" path="res://npc.tscn" id="2_p0dqw"]
@@ -19,6 +19,12 @@ size = Vector2(1100, 120)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exit"]
 size = Vector2(200, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_leftwallseg"]
+size = Vector2(100, 800)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_leftexit"]
+size = Vector2(20, 200)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("6_main001")
@@ -87,6 +93,17 @@ offset_right = 2400.0
 offset_bottom = 120.0
 color = Color(0.45, 0.45, 0.45, 1)
 
+[node name="LeftSideTopWall" type="ColorRect" parent="."]
+offset_right = 120.0
+offset_bottom = 800.0
+color = Color(0.45, 0.45, 0.45, 1)
+
+[node name="LeftSideBottomWall" type="ColorRect" parent="."]
+offset_top = 1000.0
+offset_right = 120.0
+offset_bottom = 1800.0
+color = Color(0.45, 0.45, 0.45, 1)
+
 [node name="Player" parent="." instance=ExtResource("1_jsbj5")]
 position = Vector2(1200, 900)
 
@@ -109,9 +126,13 @@ position = Vector2(800, 1400)
 
 [node name="Borders" type="StaticBody2D" parent="."]
 
-[node name="LeftWall" type="CollisionShape2D" parent="Borders"]
-position = Vector2(-50, 900)
-shape = SubResource("RectangleShape2D_wallv")
+[node name="LeftWallTop" type="CollisionShape2D" parent="Borders"]
+position = Vector2(-50, 400)
+shape = SubResource("RectangleShape2D_leftwallseg")
+
+[node name="LeftWallBottom" type="CollisionShape2D" parent="Borders"]
+position = Vector2(-50, 1400)
+shape = SubResource("RectangleShape2D_leftwallseg")
 
 [node name="RightWall" type="CollisionShape2D" parent="Borders"]
 position = Vector2(2450, 900)
@@ -134,3 +155,9 @@ position = Vector2(1200, -60)
 
 [node name="TopExitShape" type="CollisionShape2D" parent="TopExit"]
 shape = SubResource("RectangleShape2D_exit")
+
+[node name="LeftExit" type="Area2D" parent="."]
+position = Vector2(-10, 900)
+
+[node name="LeftExitShape" type="CollisionShape2D" parent="LeftExit"]
+shape = SubResource("RectangleShape2D_leftexit")

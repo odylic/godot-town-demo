@@ -1,0 +1,190 @@
+[gd_scene load_steps=13 format=3 uid="uid://inn_interior_001"]
+
+[ext_resource type="Script" path="res://house_interior.gd" id="1_hintgd"]
+[ext_resource type="PackedScene" uid="uid://bvt8qnxwqy3ey" path="res://player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://d2u0lp08bk2p2" path="res://dialogue_box.tscn" id="3_dlgbox"]
+[ext_resource type="PackedScene" uid="uid://duah71j3glpcq" path="res://npc.tscn" id="4_npc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_topwall"]
+size = Vector2(1280, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_leftwall"]
+size = Vector2(20, 720)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rightwall"]
+size = Vector2(20, 720)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bottomleft"]
+size = Vector2(608, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bottomright"]
+size = Vector2(608, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exitdoor"]
+size = Vector2(64, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bar"]
+size = Vector2(1120, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_table1"]
+size = Vector2(250, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_table2"]
+size = Vector2(250, 100)
+
+[node name="InnInterior" type="Node2D"]
+script = ExtResource("1_hintgd")
+
+[node name="Floor" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.48, 0.28, 0.10, 1)
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="TopWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(640, 10)
+shape = SubResource("RectangleShape2D_topwall")
+
+[node name="LeftWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(10, 360)
+shape = SubResource("RectangleShape2D_leftwall")
+
+[node name="RightWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(1270, 360)
+shape = SubResource("RectangleShape2D_rightwall")
+
+[node name="LeftBottomWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(304, 710)
+shape = SubResource("RectangleShape2D_bottomleft")
+
+[node name="RightBottomWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(976, 710)
+shape = SubResource("RectangleShape2D_bottomright")
+
+[node name="WallVisuals" type="Node2D" parent="."]
+
+[node name="TopWallRect" type="ColorRect" parent="WallVisuals"]
+offset_right = 1280.0
+offset_bottom = 20.0
+color = Color(0.25, 0.14, 0.05, 1)
+
+[node name="LeftWallRect" type="ColorRect" parent="WallVisuals"]
+offset_right = 20.0
+offset_bottom = 720.0
+color = Color(0.25, 0.14, 0.05, 1)
+
+[node name="RightWallRect" type="ColorRect" parent="WallVisuals"]
+offset_left = 1260.0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.25, 0.14, 0.05, 1)
+
+[node name="BottomLeftWallRect" type="ColorRect" parent="WallVisuals"]
+offset_top = 700.0
+offset_right = 608.0
+offset_bottom = 720.0
+color = Color(0.25, 0.14, 0.05, 1)
+
+[node name="BottomRightWallRect" type="ColorRect" parent="WallVisuals"]
+offset_left = 672.0
+offset_top = 700.0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.25, 0.14, 0.05, 1)
+
+[node name="DoorVisual" type="ColorRect" parent="WallVisuals"]
+offset_left = 608.0
+offset_top = 680.0
+offset_right = 672.0
+offset_bottom = 720.0
+color = Color(0.20, 0.12, 0.04, 1)
+
+[node name="Decorations" type="Node2D" parent="."]
+
+[node name="Counter" type="ColorRect" parent="Decorations"]
+offset_left = 80.0
+offset_top = 160.0
+offset_right = 1200.0
+offset_bottom = 240.0
+color = Color(0.42, 0.26, 0.10, 1)
+
+[node name="Table1" type="ColorRect" parent="Decorations"]
+offset_left = 200.0
+offset_top = 380.0
+offset_right = 450.0
+offset_bottom = 480.0
+color = Color(0.40, 0.24, 0.09, 1)
+
+[node name="Chair1a" type="ColorRect" parent="Decorations"]
+offset_left = 140.0
+offset_top = 395.0
+offset_right = 196.0
+offset_bottom = 465.0
+color = Color(0.30, 0.16, 0.06, 1)
+
+[node name="Chair1b" type="ColorRect" parent="Decorations"]
+offset_left = 454.0
+offset_top = 395.0
+offset_right = 510.0
+offset_bottom = 465.0
+color = Color(0.30, 0.16, 0.06, 1)
+
+[node name="Table2" type="ColorRect" parent="Decorations"]
+offset_left = 830.0
+offset_top = 380.0
+offset_right = 1080.0
+offset_bottom = 480.0
+color = Color(0.40, 0.24, 0.09, 1)
+
+[node name="Chair2a" type="ColorRect" parent="Decorations"]
+offset_left = 770.0
+offset_top = 395.0
+offset_right = 826.0
+offset_bottom = 465.0
+color = Color(0.30, 0.16, 0.06, 1)
+
+[node name="Chair2b" type="ColorRect" parent="Decorations"]
+offset_left = 1084.0
+offset_top = 395.0
+offset_right = 1140.0
+offset_bottom = 465.0
+color = Color(0.30, 0.16, 0.06, 1)
+
+[node name="FurnitureCollision" type="StaticBody2D" parent="Decorations"]
+
+[node name="CounterShape" type="CollisionShape2D" parent="Decorations/FurnitureCollision"]
+position = Vector2(640, 200)
+shape = SubResource("RectangleShape2D_bar")
+
+[node name="Table1Shape" type="CollisionShape2D" parent="Decorations/FurnitureCollision"]
+position = Vector2(325, 430)
+shape = SubResource("RectangleShape2D_table1")
+
+[node name="Table2Shape" type="CollisionShape2D" parent="Decorations/FurnitureCollision"]
+position = Vector2(955, 430)
+shape = SubResource("RectangleShape2D_table2")
+
+[node name="ExitDoor" type="Area2D" parent="."]
+position = Vector2(640, 710)
+
+[node name="ExitShape" type="CollisionShape2D" parent="ExitDoor"]
+shape = SubResource("RectangleShape2D_exitdoor")
+
+[node name="Innkeeper" parent="." instance=ExtResource("4_npc")]
+position = Vector2(640, 120)
+npc_name = "Innkeeper"
+dialogue_lines = Array[String](["Welcome to the inn! Rest your weary feet.", "A warm bed and a roof — what more could you ask?", "We have the softest beds in the region."])
+interaction_offset = Vector2(0, 135)
+interaction_size = Vector2(300, 60)
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(640, 650)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_left = 0
+limit_top = 0
+limit_right = 1280
+limit_bottom = 720
+
+[node name="DialogueBox" parent="." instance=ExtResource("3_dlgbox")]
