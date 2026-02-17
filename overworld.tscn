@@ -1,0 +1,231 @@
+[gd_scene load_steps=10 format=3 uid="uid://bx3y4z5a6b7c8"]
+
+[ext_resource type="Script" uid="uid://da1b2c3d4e5f6" path="res://overworld.gd" id="1_ow001"]
+[ext_resource type="PackedScene" uid="uid://bvt8qnxwqy3ey" path="res://player.tscn" id="2_ow001"]
+[ext_resource type="PackedScene" uid="uid://djxp2nw8ymk4b" path="res://minimap.tscn" id="3_ow001"]
+[ext_resource type="PackedScene" uid="uid://cmtx6p4xabkr8" path="res://full_map.tscn" id="4_ow001"]
+[ext_resource type="PackedScene" uid="uid://d2u0lp08bk2p2" path="res://dialogue_box.tscn" id="5_ow001"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_owv"]
+size = Vector2(100, 1900)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_owh"]
+size = Vector2(2600, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_owbe"]
+size = Vector2(200, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_owbw"]
+size = Vector2(1100, 120)
+
+[node name="Overworld" type="Node2D"]
+script = ExtResource("1_ow001")
+
+[node name="Ground" type="ColorRect" parent="."]
+offset_right = 2400.0
+offset_bottom = 1800.0
+color = Color(0.08, 0.28, 0.08, 1)
+
+[node name="Path" type="ColorRect" parent="."]
+offset_left = 1100.0
+offset_top = 0.0
+offset_right = 1300.0
+offset_bottom = 1800.0
+color = Color(0.38, 0.3, 0.18, 1)
+
+[node name="Trees" type="Node2D" parent="."]
+
+[node name="Tree1" type="ColorRect" parent="Trees"]
+offset_left = 150.0
+offset_top = 100.0
+offset_right = 200.0
+offset_bottom = 380.0
+color = Color(0.05, 0.18, 0.05, 1)
+
+[node name="Tree1Crown" type="ColorRect" parent="Trees"]
+offset_left = 110.0
+offset_top = 60.0
+offset_right = 240.0
+offset_bottom = 140.0
+color = Color(0.1, 0.3, 0.1, 1)
+
+[node name="Tree2" type="ColorRect" parent="Trees"]
+offset_left = 350.0
+offset_top = 200.0
+offset_right = 400.0
+offset_bottom = 500.0
+color = Color(0.05, 0.18, 0.05, 1)
+
+[node name="Tree2Crown" type="ColorRect" parent="Trees"]
+offset_left = 305.0
+offset_top = 150.0
+offset_right = 445.0
+offset_bottom = 240.0
+color = Color(0.12, 0.32, 0.12, 1)
+
+[node name="Tree3" type="ColorRect" parent="Trees"]
+offset_left = 550.0
+offset_top = 80.0
+offset_right = 600.0
+offset_bottom = 320.0
+color = Color(0.05, 0.18, 0.05, 1)
+
+[node name="Tree3Crown" type="ColorRect" parent="Trees"]
+offset_left = 510.0
+offset_top = 40.0
+offset_right = 640.0
+offset_bottom = 120.0
+color = Color(0.1, 0.28, 0.1, 1)
+
+[node name="Tree4" type="ColorRect" parent="Trees"]
+offset_left = 1600.0
+offset_top = 120.0
+offset_right = 1660.0
+offset_bottom = 400.0
+color = Color(0.05, 0.18, 0.05, 1)
+
+[node name="Tree4Crown" type="ColorRect" parent="Trees"]
+offset_left = 1555.0
+offset_top = 70.0
+offset_right = 1705.0
+offset_bottom = 160.0
+color = Color(0.1, 0.3, 0.1, 1)
+
+[node name="Tree5" type="ColorRect" parent="Trees"]
+offset_left = 1850.0
+offset_top = 200.0
+offset_right = 1910.0
+offset_bottom = 480.0
+color = Color(0.05, 0.18, 0.05, 1)
+
+[node name="Tree5Crown" type="ColorRect" parent="Trees"]
+offset_left = 1800.0
+offset_top = 150.0
+offset_right = 1960.0
+offset_bottom = 240.0
+color = Color(0.12, 0.32, 0.12, 1)
+
+[node name="Tree6" type="ColorRect" parent="Trees"]
+offset_left = 2100.0
+offset_top = 80.0
+offset_right = 2150.0
+offset_bottom = 340.0
+color = Color(0.05, 0.18, 0.05, 1)
+
+[node name="Tree6Crown" type="ColorRect" parent="Trees"]
+offset_left = 2055.0
+offset_top = 40.0
+offset_right = 2195.0
+offset_bottom = 120.0
+color = Color(0.1, 0.28, 0.1, 1)
+
+[node name="Tree7" type="ColorRect" parent="Trees"]
+offset_left = 200.0
+offset_top = 900.0
+offset_right = 260.0
+offset_bottom = 1180.0
+color = Color(0.05, 0.18, 0.05, 1)
+
+[node name="Tree7Crown" type="ColorRect" parent="Trees"]
+offset_left = 155.0
+offset_top = 850.0
+offset_right = 305.0
+offset_bottom = 940.0
+color = Color(0.1, 0.3, 0.1, 1)
+
+[node name="Tree8" type="ColorRect" parent="Trees"]
+offset_left = 500.0
+offset_top = 1000.0
+offset_right = 550.0
+offset_bottom = 1300.0
+color = Color(0.05, 0.18, 0.05, 1)
+
+[node name="Tree8Crown" type="ColorRect" parent="Trees"]
+offset_left = 455.0
+offset_top = 950.0
+offset_right = 595.0
+offset_bottom = 1040.0
+color = Color(0.12, 0.32, 0.12, 1)
+
+[node name="Tree9" type="ColorRect" parent="Trees"]
+offset_left = 1750.0
+offset_top = 850.0
+offset_right = 1810.0
+offset_bottom = 1130.0
+color = Color(0.05, 0.18, 0.05, 1)
+
+[node name="Tree9Crown" type="ColorRect" parent="Trees"]
+offset_left = 1705.0
+offset_top = 800.0
+offset_right = 1855.0
+offset_bottom = 890.0
+color = Color(0.1, 0.3, 0.1, 1)
+
+[node name="Tree10" type="ColorRect" parent="Trees"]
+offset_left = 2050.0
+offset_top = 950.0
+offset_right = 2110.0
+offset_bottom = 1250.0
+color = Color(0.05, 0.18, 0.05, 1)
+
+[node name="Tree10Crown" type="ColorRect" parent="Trees"]
+offset_left = 2000.0
+offset_top = 900.0
+offset_right = 2160.0
+offset_bottom = 990.0
+color = Color(0.12, 0.32, 0.12, 1)
+
+[node name="Player" parent="." instance=ExtResource("2_ow001")]
+position = Vector2(1200, 1750)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_right = 2400
+limit_bottom = 1800
+
+[node name="Borders" type="StaticBody2D" parent="."]
+
+[node name="LeftWall" type="CollisionShape2D" parent="Borders"]
+position = Vector2(-50, 900)
+shape = SubResource("RectangleShape2D_owv")
+
+[node name="RightWall" type="CollisionShape2D" parent="Borders"]
+position = Vector2(2450, 900)
+shape = SubResource("RectangleShape2D_owv")
+
+[node name="TopWall" type="CollisionShape2D" parent="Borders"]
+position = Vector2(1200, -50)
+shape = SubResource("RectangleShape2D_owh")
+
+[node name="LeftBottomWall" type="CollisionShape2D" parent="Borders"]
+position = Vector2(550, 1740)
+shape = SubResource("RectangleShape2D_owbw")
+
+[node name="RightBottomWall" type="CollisionShape2D" parent="Borders"]
+position = Vector2(1850, 1740)
+shape = SubResource("RectangleShape2D_owbw")
+
+[node name="LeftBottomWall" type="ColorRect" parent="."]
+offset_left = 0.0
+offset_top = 1680.0
+offset_right = 1100.0
+offset_bottom = 1800.0
+color = Color(0.45, 0.45, 0.45, 1)
+
+[node name="RightBottomWall" type="ColorRect" parent="."]
+offset_left = 1300.0
+offset_top = 1680.0
+offset_right = 2400.0
+offset_bottom = 1800.0
+color = Color(0.45, 0.45, 0.45, 1)
+
+[node name="BottomExit" type="Area2D" parent="."]
+position = Vector2(1200, 1860)
+
+[node name="BottomExitShape" type="CollisionShape2D" parent="BottomExit"]
+shape = SubResource("RectangleShape2D_owbe")
+
+[node name="Minimap" parent="." instance=ExtResource("3_ow001")]
+
+[node name="FullMap" parent="." instance=ExtResource("4_ow001")]
+
+[node name="DialogueBox" parent="." instance=ExtResource("5_ow001")]

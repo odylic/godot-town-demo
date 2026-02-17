@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://djxp2nw8ymk4b"]
+
+[ext_resource type="Script" uid="uid://bmmg1xkq5a7tc" path="res://minimap.gd" id="1_mm001"]
+
+[node name="Minimap" type="CanvasLayer"]
+layer = 10
+
+[node name="MinimapPanel" type="Panel" parent="."]
+offset_left = 10.0
+offset_top = 530.0
+offset_right = 220.0
+offset_bottom = 710.0
+
+[node name="MapTitle" type="Label" parent="MinimapPanel"]
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 205.0
+offset_bottom = 22.0
+text = "[ MAP ]"
+horizontal_alignment = 1
+
+[node name="MinimapDraw" type="Control" parent="MinimapPanel"]
+offset_left = 5.0
+offset_top = 25.0
+offset_right = 205.0
+offset_bottom = 175.0
+mouse_filter = 2
+script = ExtResource("1_mm001")
